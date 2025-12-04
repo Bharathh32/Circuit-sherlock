@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title -->
+    <title>Circuit Sherlock</title>
+    <!-- Bootstrap Cdn link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Bootstrap icon cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- External Css link -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Aos animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <video id="bg-video" autoplay muted loop playsinline
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+        <source src="{{ url_for('static', filename='Assets/generated-video.mp4') }}" type="video/mp4">
+    </video>
+
+    <!-- Dark translucent overlay -->
+    <div class="video-overlay"></div>
+
+    <section class="index-background">
+
+        <!-- navbar start -->
+        <nav class="navbar navbar-scrolled navbar-expand-lg bg-body-tertiary sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fs-4" href="#"><span><img
+                            src="{{ url_for('static', filename='assets/ailogo.png')}}" alt=""
+                            width="55px" height="55px" class="mb-2" /></span>Circuit <span style="color: gold;">Sherlock</span> </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse mb-2" id="navbarNav">
+                    <ul class="navbar-nav mx-auto fs-5">
+                        <li class="nav-item me-3">
+                            <a class="nav-link nav-index fw-bold" aria-current="page" href="/Home">Home</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link nav-index fw-bold" href="/About">About Us</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link nav-index fw-bold" href="/">Our AI</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link nav-index fw-bold" href="/Contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- navbar end -->
+
+        <!-- SUMMARY SECTION -->
+        <div class="container mt-5 py-5" id="summarySection" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+            <div class="summary-card mx-auto " style="max-width:850px;">
+                <h2 class="fw-bold text-center">AI-Powered PCB Defect Detection</h2>
+                <p class="mt-3 text-center">
+                    Circuit Sherlock is an AI-powered system that detects defects in bare PCBs using a YOLO deep-learning model. Upload an image or use your live camera feed to analyze PCB defects instantly.
+                <div class="text-center mt-4">
+                    <button id="startDetectionBtn" class="btn btn-primary px-4 py-2 rounded-3 fw-semibold detect-btn">
+                        Start Detection
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- MAIN TWO COLUMN LAYOUT -->
+        <div class="container main-section mt-5">
+            <div class="row g-4" >
+
+                <!-- LEFT COLUMN: UPLOAD SECTION -->
+                <div class="col-md-6 equal-columns">
+
+                    <form action="/upload" id="uploadForm" style="display:none;" method="POST"
+                        enctype="multipart/form-data">
+                        <div class="p-4 shadow rounded-4 glass-index">
+
+                            <h2 class="text-center fw-bold mb-2">Upload PCB Image / Video</h2>
+                            <p class="text-center mb-4">Drag & Drop your file or click to browse</p>
+
+                            <div class="row g-3">
+
+                                <!-- IMAGE -->
+                                <div class="col-6 text-center">
+                                    <label
+                                        class="drop-area p-3 border rounded-4 w-100 d-flex flex-column align-items-center justify-content-center"
+                                        id="imageDrop" style="cursor:pointer;">
+                                        <i class="bi bi-image fs-1 text-primary"></i>
+                                        <p class="mt-2 fw-semibold mb-0">Image</p>
+                                    </label>
+                                    <input type="file" id="imageInput" name="image" accept="image/*" hidden>
+                                    <div id="imagePreviewContainer" style="display:none;" class="mt-2">
+                                        <img id="imagePreview" class="w-100 rounded shadow"
+                                            style="max-height:150px; object-fit:contain;">
+                                    </div>
+                                </div>
+
+                                <!-- VIDEO -->
+                                <div class="col-6 text-center">
+                                    <div class="drop-area p-3 border rounded-4 w-100 d-flex flex-column align-items-center justify-content-center"
+                                        onclick="window.open('/live', '_blank');" style="cursor:pointer;">
+                                        <i class="bi bi-camera-reels fs-1 text-danger"></i>
+                                        <p class="mt-2 fw-semibold mb-0">Live Camera Detection</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <button type="submit"
+                                class="btn btn-primary detect-btn mt-4 w-100 py-2 fw-semibold rounded-3">
+                                Detect Defects
+                            </button>
+
+                        </div>
+                    </form>
+
+                </div>
+
+                <!-- RIGHT COLUMN: ACCORDION SECTION (hidden initially) -->
+                <div class="col-md-6 equal-columns" id="accordionSection" style="display:none;">
+                    <div class="p-4 shadow rounded-4 glass-index">
+
+                        <h4 class="fw-bold mb-3 text-center">FAQs</h4>
+
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne">
+                                        What is Circuit Sherlock?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        Circuit Sherlock is an AI-based system that identifies defects in bare PCB images using computer vision and deep learning.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseTwo">
+                                        Can I use my webcam for detection?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        Yes. The system supports live video camera detection for real-time PCB inspection.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseThree">
+                                        Is my uploaded data stored?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        No. Images and camera frames are processed temporarily and not saved.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseThree">
+                                        Do I need to install anything?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        No. You can directly upload an image or stream from your camera through the web interface.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+                <!-- Footer section start -->
+<footer class="footer glass-footer" data-aos="fade-up">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <!-- column 1 -->
+            <div class="col-sm-12 col-md-3 col-lg-3 glass-card">
+                <div class="mx-4">
+                    <h5 class="glass-heading">Circuit Sherlock</h5>
+                    <p class="mt-4 text-wite glass-text">
+                        AI-Powered Image-Based PCB Defect Detection System
+                        <br>
+                        Combining Deep Learning and Computer Vision for Smarter Manufacturing.
+                    </p>
+                </div>
+            </div>
+
+            <!-- column 2 -->
+            <div class="col-sm-12 col-md-3 col-lg-3 glass-card">
+                <div class="mx-5">
+                    <h5 class="glass-heading">Quick Links</h5>
+                    <ul class="list-unstyled mt-4">
+                            <li class="text-capitalize mb-2"><a href="/Home"
+                                    class="text-decoration-none text-white">Home</a>
+                            </li>
+                            <li class="text-capitalize mb-2"><a href="/About"
+                                    class="text-decoration-none text-white">About
+                                    Us</a></li>
+                            <li class="text-capitalize mb-2"><a href="/"
+                                    class="text-decoration-none text-white">Model</a></li>
+                            <li class="text-capitalize mb-2"><a href="/Contact"
+                                    class="text-decoration-none text-white">Contact</a></li>
+                        </ul>
+                </div>
+            </div>
+
+            <!-- column 3 -->
+            <div class="col-sm-12 col-md-3 col-lg-3 glass-card">
+                <h5 class="glass-heading">Get in Touch</h5>
+                <div class="d-flex mt-4 glass-text">
+                    <div class="me-2"><i class="bi bi-geo-alt fs-4"></i></div>
+                    <div class="text-wite">
+                        <p>kukkatpally,road no 4 <br>Hyderabad,50087</p>
+                    </div>
+                </div>
+                <div class="d-flex glass-text">
+                    <div class="me-2"><i class="bi bi-telephone fs-4"></i></div>
+                    <div class="text-wite">
+                        <p>+91 9958441478</p>
+                    </div>
+                </div>
+                <div class="d-flex glass-text">
+                    <div class="me-2"><i class="bi bi-envelope fs-4"></i></div>
+                    <div class="text-wite">
+                        <p>CircuitSherlock@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="text-center glass-text">
+        <p>© 2025 Circuit Sherlock</p>
+    </div>
+</footer>
+    <!-- Footer section End -->
+
+
+    </section>
+
+
+
+
+
+    <!-- scripts -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Bootstrap js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <!-- Aos animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live PCB Detection</title>
+    <style>
+        body { 
+            margin: 0; 
+            padding: 0; 
+            display: flex;
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* LEFT SIDE TABLE */
+        #leftPanel {
+            width: 28%;
+            height: 100vh;
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 2px solid #0ff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid #0ff;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: #033;
+        }
+
+        /* CENTER LIVE PREVIEW */
+        #centerPanel {
+            width: 72%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #resultFrame {
+            width: 70%;
+            border-radius: 10px;
+            border: 3px solid #0ff;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LEFT PANEL TABLE -->
+    <div id="leftPanel">
+        <h2>📋 PCB Defect Log</h2>
+
+        <table id="defectTable">
+            <tr>
+                <th>PCB #</th>
+                <th>Defect</th>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- CENTER LIVE RESULT -->
+    <div id="centerPanel">
+        <h2>🎥 Live PCB Defect Detection</h2>
+        <img id="resultFrame">
+    </div>
+
+
+<script>
+let resultFrame = document.getElementById("resultFrame");
+let table = document.getElementById("defectTable");
+
+let pcbCounter = 1;
+
+// Start webcam (hidden video)
+navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+    let video = document.createElement("video");
+    video.srcObject = stream;
+    video.play();
+
+    video.onloadedmetadata = () => {
+        startDetection(video);
+    };
+});
+
+function startDetection(video) {
+    setInterval(() => {
+        captureFrame(video);
+    }, 150);
+}
+
+function captureFrame(video) {
+    let canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    let ctx = canvas.getContext("2d");
+    ctx.drawImage(video, 0, 0);
+
+    let base64Image = canvas.toDataURL("image/jpeg");
+
+    fetch("/process_frame", {
+        method: "POST",
+        body: new URLSearchParams({ frame: base64Image }),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+    })
+    .then(res => res.json())
+    .then(data => {
+        // Show processed frame
+        resultFrame.src = data.frame;
+
+        // Log defect in table
+        let defects = data.defects.join(", ");
+        
+        if (defects.trim() !== "") {
+            addDefectToTable(defects);
+        }
+    });
+}
+
+function addDefectToTable(defectText) {
+    let row = table.insertRow(-1);
+
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+
+    cell1.innerHTML = pcbCounter++;
+    cell2.innerHTML = defectText;
+}
+</script>
+
+</body>
+</html>

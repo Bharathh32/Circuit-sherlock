@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title -->
+    <title>Circuit Sherlock</title>
+    <!-- Bootstrap Cdn link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Bootstrap icon cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- External Css link -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Aos animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+    <section class="Home-background">
+        <!-- navbar start -->
+        <nav class="navbar navbar-scrolled navbar-expand-lg bg-body-tertiary sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fs-4" href="#"><span><img src="{{ url_for('static', filename='./Assets/Gemini_Generated_Image_tqmylmtqmylmtqmy_1_-removebg-preview.png')}}" alt="" width="55px" height="55px" class="mb-2"></span>Circuit <span class="title-1">Sherlock</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse mb-2" id="navbarNav">
+                    <ul class="navbar-nav mx-auto fs-5">
+                        <li class="nav-item me-3">
+                            <a class="nav-link fw-bold" aria-current="page" href="/Home">Home</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link fw-bold" href="/About">About Us</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link fw-bold" href="/">Our AI</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link fw-bold" href="/Contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- navbar end -->
+
+        <!-- banner start -->
+        <section class="banner ">`
+            <div class="banner-content">
+                <h1 class="title" data-aos="zoom-in">Smarter Circuits, Smarter Inspection</h1>
+                <p data-aos="zoom-in" data-aos-delay="300" >AI that sees what humans miss ensuring zero-defect PCB production.</p>
+                <a class="btn btn-outline w-25 p-2 fw-bold mt-3 btn-glow" href="/" data-aos="zoom-in" data-aos-delay="300">Try Our Ai</a>
+            </div>
+        </section>
+        <!-- banner end -->
+
+        <!-- About Bare PCBs start -->
+        <section class="section-wrap" data-aos="fade-up">
+            <div class="top-row">
+
+                <div id="carouselExampleSlidesOnly" class="carousel slide pcb-image-wrap" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{ url_for('static', filename='./Assets/detect.jpg')}}" class="pcb-image"
+                                alt="PCB Image">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ url_for('static', filename='./Assets/detect-2.jpg')}}" class="pcb-image"
+                                alt="PCB Image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT CONTENT -->
+                <div class="about">
+                    <h3 class="title-1 text-bold">
+                        Bare PCBs: The Foundation Before Electronics Come to Life
+                    </h3>
+                    <p class="text-white text-justify">
+                        Bare PCBs are the raw, component-free boards that act as the core framework of every electronic
+                        device. Even before components like resistors, sensors, or chips are mounted, the bare board
+                        defines how electricity will flow through copper traces, pads, and layers. <br>
+                        Built to provide mechanical strength and precise electrical pathways, bare PCBs dictate
+                        performance, durability, and reliability right from the manufacturing stage. Whether used in
+                        tiny wearable devices or large industrial equipment, the quality of a bare PCB determines how
+                        efficiently the final product will function even before assembly begins.
+                    </p>
+
+                    <!-- Applications -->
+                    <div class="apps">
+                        <div class="app-card">
+                            <div class="icon">🏥</div>
+                            <div>
+                                <div class="app-title">Medical</div>
+                                <div class="app-sub">Diagnostic Devices, Monitors</div>
+                            </div>
+                        </div>
+
+                        <div class="app-card">
+                            <div class="icon">📺</div>
+                            <div>
+                                <div class="app-title">Consumer Electronics</div>
+                                <div class="app-sub">Smartphones, TVs, Wearables</div>
+                            </div>
+                        </div>
+
+                        <div class="app-card">
+                            <div class="icon">📡</div>
+                            <div>
+                                <div class="app-title">Telecom</div>
+                                <div class="app-sub">Routers, Switches, 5G Equipment</div>
+                            </div>
+                        </div>
+
+                        <div class="app-card">
+                            <div class="icon">🚗</div>
+                            <div>
+                                <div class="app-title">Automotive</div>
+                                <div class="app-sub">ECUs, Sensors, Infotainment</div>
+                            </div>
+                        </div>
+
+                        <div class="app-card">
+                            <div class="icon">🏭</div>
+                            <div>
+                                <div class="app-title">Industrial</div>
+                                <div class="app-sub">Control Systems, Robotics</div>
+                            </div>
+                        </div>
+
+                        <div class="app-card">
+                            <div class="icon">✈</div>
+                            <div>
+                                <div class="app-title">Aerospace</div>
+                                <div class="app-sub">Avionics, Satellites</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- About Bare PCBs end -->
+
+
+        <!-- images section -->
+        <section class="mt-5 p-5 ">
+            <div class="container image-cards p-5">
+                <h1 class="font-boldx pcb-section-title title-1" data-aos="zoom-in"  data-aos-delay="300">Where PCB's Are Used</h1>
+
+                <!-- ================== SECTION 1 — CONSUMER ================== -->
+                <div class="row g-4 align-items-center my-3 img-section" data-aos="fade-up-right">
+                    <!-- LEFT: CONTENT -->
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <div class="">
+                            <h2 class="mb-3 pcb-heading title-1">Consumer Electronics</h2>
+                            <p class="text-justify">
+                                From smartphones and laptops to kitchen appliances and wearables, consumer electronics
+                                run on compact and high-density PCB designs. These devices need precisely engineered
+                                bare PCBs to deliver performance, durability, and low power consumption while keeping
+                                products lightweight and affordable.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: IMAGE CAROUSEL -->
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <div id="consumerCarousel" class="carousel slide pcb-carousel" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+
+                                <div class="carousel-item active">
+                                    <img src="{{ url_for('static', filename='./Assets/consumerele1.png')}}"
+                                        class="img-size">
+
+                                </div>
+
+                                <div class="carousel-item">
+                                    <img src="{{ url_for('static', filename='./Assets/consumerele2.png')}}"
+                                        class="img-size">
+
+                                </div>
+
+                                <div class="carousel-item">
+                                    <img src="{{ url_for('static', filename='./Assets/consumerele3.png')}}"
+                                        class="img-size">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- ================== SECTION 2 — AUTOMOTIVE ================== -->
+                <div class="row g-4 align-items-center my-3 img-section" data-aos="fade-up-left">
+                    <!-- LEFT (REV): CAROUSEL -->
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <div id="automotiveCarousel" class="carousel slide pcb-carousel" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+
+                                <div class="carousel-item active">
+                                    <img src="{{ url_for('static', filename='./Assets/automotive1.png')}}"
+                                        class="img-size">
+
+                                </div>
+
+                                <div class="carousel-item">
+                                    <img src="{{ url_for('static', filename='./Assets/automotive2.png')}}"
+                                        class="img-size">
+
+                                </div>
+
+                                <div class="carousel-item">
+                                    <img src="{{ url_for('static', filename='./Assets/automotive3.png')}}"
+                                        class="img-size">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT (REV): CONTENT -->
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <div>
+                            <h2 class="mb-3 pcb-heading title-1">Automotive</h2>
+                            <p class="text-justify">
+                                Modern vehicles depend heavily on electronic control systems. Bare PCBs form the
+                                foundation for critical components such as engine control units, battery management,
+                                infotainment systems, safety sensors, and ADAS (Advanced Driver Assistance Systems).
+                                High reliability in harsh conditions makes defect-free PCBs essential for road safety.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- ================== SECTION 3 — MEDICAL ================== -->
+                <div class="row g-4 align-items-center my-3 img-section" data-aos="fade-up-right">
+                    <!-- LEFT: CONTENT -->
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <div>
+                            <h2 class="mb-3 pcb-heading title-1">Medical Devices</h2>
+                            <p class="text-justify">
+                                Medical equipment demands extreme accuracy and reliability. Bare PCBs power
+                                life-critical devices such as ECG machines, imaging systems, patient monitors, infusion
+                                pumps, and portable diagnostic tools. Even tiny PCB defects can impact patient safety,
+                                making precision inspection crucial in healthcare technology.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: CAROUSEL -->
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <div id="medicalCarousel" class="carousel slide pcb-carousel" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+
+                                <div class="carousel-item active">
+                                    <img src="{{ url_for('static', filename='./Assets/medical1.png')}}"
+                                        class="img-size">
+
+                                </div>
+
+                                <div class="carousel-item">
+                                    <img src="{{ url_for('static', filename='./Assets/medical2.png')}}"
+                                        class="img-size">
+
+                                </div>
+
+                                <div class="carousel-item">
+                                    <img src="{{ url_for('static', filename='./Assets/medical3.png')}}"
+                                        class="img-size">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- ================== SECTION 4 — TELECOM ================== -->
+                <div class="row g-4 align-items-center my-3 img-section" data-aos="fade-up-left">
+
+                    <!-- LEFT (REV): CAROUSEL -->
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <div id="telecomCarousel" class="carousel slide pcb-carousel" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+
+                                <div class="carousel-item active">
+                                    <img src="{{ url_for('static', filename='./Assets/telecom1.png')}}"
+                                        class="img-size">
+
+                                </div>
+
+                                <div class="carousel-item">
+                                    <img src="{{ url_for('static', filename='./Assets/telecom2.png')}}"
+                                        class="img-size">
+
+                                </div>
+
+                                <div class="carousel-item">
+                                    <img src="{{ url_for('static', filename='./Assets/telecom3.png')}}"
+                                        class="img-size">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT (REV): CONTENT -->
+                    <div class="col-sm-12 col-md-12 col-lg-6">
+                        <div>
+                            <h2 class="mb-3 pcb-heading title-1">Telecommunication</h2>
+                            <p class="text-justify">
+                                Telecommunication devices require fast, stable, and long-range signal transmission. Bare
+                                PCBs are the backbone of networking equipment like routers, antennas, servers, base
+                                stations, and 5G modules. Defect-free boards ensure low latency, stronger connectivity,
+                                and uninterrupted communication worldwide.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+        <!-- images section -->
+
+
+
+
+
+
+
+        <!-- Footer section start -->
+        <footer class="footer glass-footer" data-aos="fade-up">
+            <div class="container">
+                <div class="row justify-content-center">
+
+                    <!-- column 1 -->
+                    <div class="col-sm-12 col-md-3 col-lg-3 glass-card">
+                        <div class="mx-4">
+                            <h5 class="glass-heading">Circuit Sherlock</h5>
+                            <p class="mt-4 text-wite glass-text">
+                                AI-Powered Image-Based PCB Defect Detection System
+                                <br>
+                                Combining Deep Learning and Computer Vision for Smarter Manufacturing.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- column 2 -->
+                    <div class="col-sm-12 col-md-3 col-lg-3 glass-card">
+                        <div class="mx-5">
+                            <h5 class="glass-heading">Quick Links</h5>
+                            <ul class="list-unstyled mt-4">
+                                <li class="text-capitalize mb-2"><a href="/Home"
+                                        class="text-decoration-none text-white">Home</a>
+                                </li>
+                                <li class="text-capitalize mb-2"><a href="/About"
+                                        class="text-decoration-none text-white">About
+                                        Us</a></li>
+                                <li class="text-capitalize mb-2"><a href="/"
+                                        class="text-decoration-none text-white">Our AI</a></li>
+                                <li class="text-capitalize mb-2"><a href="/Contact"
+                                        class="text-decoration-none text-white">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- column 3 -->
+                    <div class="col-sm-12 col-md-3 col-lg-3 glass-card">
+                        <h5 class="glass-heading">Get in Touch</h5>
+                        <div class="d-flex mt-4 glass-text">
+                            <div class="me-2"><i class="bi bi-geo-alt fs-4"></i></div>
+                            <div class="text-wite">
+                                <p>kukkatpally,road no 4 <br>Hyderabad,50087</p>
+                            </div>
+                        </div>
+                        <div class="d-flex glass-text">
+                            <div class="me-2"><i class="bi bi-telephone fs-4"></i></div>
+                            <div class="text-wite">
+                                <p>+91 9958441478</p>
+                            </div>
+                        </div>
+                        <div class="d-flex glass-text">
+                            <div class="me-2"><i class="bi bi-envelope fs-4"></i></div>
+                            <div class="text-wite">
+                                <p>CircuitSherlock@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="text-center glass-text">
+                <p>© 2025 Circuit Sherlock</p>
+            </div>
+        </footer>
+        <!-- Footer section End -->
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- scripts -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Bootstrap js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <!-- Aos animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

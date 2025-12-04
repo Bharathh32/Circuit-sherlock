@@ -1,0 +1,10 @@
+opencv-python-headless==4.10.0.84
+ultralytics
+torch
+torchvision
+Flask
+gunicorn
+pandas
+numpy
+Pillow
+Flask-Mail

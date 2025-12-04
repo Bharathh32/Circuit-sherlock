@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Title -->
+    <title>Circuit Sherlock</title>
+    <!-- Bootstrap Cdn link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <!-- Bootstrap icon cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <!-- External Css link -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <!-- Aos animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+    <section class="about-background">
+        <!-- navbar start -->
+        <nav class="navbar navbar-scrolled navbar-expand-lg bg-body-tertiary sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand fs-4 about-title" href="#"><span><img
+                            src="{{ url_for('static', filename='assets/orange-removebg-preview.png')}}" alt=""
+                            width="55px" height="55px" class="mb-2" /></span>Circuit <span
+                        class="heading-2">Sherlock</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse mb-2" id="navbarNav">
+                    <ul class="navbar-nav mx-auto fs-5">
+                        <li class="nav-item me-3">
+                            <a class="nav-link nav-about fw-bold" aria-current="page" href="/Home">Home</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link nav-about fw-bold" href="/About">About Us</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link nav-about fw-bold" href="/">Our AI</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link nav-about fw-bold" href="/Contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- navbar end -->
+
+
+        <!-- Empowering PCB's inspection Section -->
+        <section class="m-5">
+            <div class="container p-5 about-heading" >
+                <div class="row" data-aos="fade-up" data-aos-duration="3000">
+                    <div class="text-center mb-5">
+                        <p class="fs-2 fw-bold heading-1"  data-aos="zoom-in">
+                            Empowering PCB's inspection through AI-powered image analysis
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6" >
+                        <div class="card glass-prism p-4 shadow border-0">
+                            <h4 class="fw-bold">Who We Are</h4>
+                            <p class="text-body-wite">
+                                We develop AI-driven systems that analyze PCB images to detect
+                                faults like missing parts, wrong soldering, or broken traces.
+                            </p>
+                        </div>
+                        <div class="card glass-prism p-4 shadow border-0 mt-4">
+                            <h4 class="fw-bold">Our Mission</h4>
+                            <p class="text-body-wite">
+                                To automate PCB inspection using deep learning, reducing
+                                manual effort while improving precision and reliability.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="card glass-prism p-4 shadow border-0">
+                            <h4 class="fw-bold">Our Vision</h4>
+                            <p class="text-body-wite">
+                                To make PCB defect detection fully automated through
+                                AI-powered image analysis, ensuring zero-defect production and
+                                smarter quality control.
+                            </p>
+                        </div>
+                        <div class="card glass-prism p-4 shadow border-0 mt-4">
+                            <h4 class="fw-bold">Key Capabilities</h4>
+                            <p class="text-body-wite">
+                                AI-driven PCB defect detection that identifies faults and
+                                highlights them in PCB images.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Circuit Sherlock Predicts -->
+        <section class="prediction-section container">
+            <!-- SECTION HEADING -->
+            <h2 class="text-center fw-bold section-title heading-1" data-aos="fade-up">
+                What Circuit Sherlock Predicts
+            </h2>
+
+            <div class="row g-4 mt-2" data-aos="fade-up" data-aos-duration="3000">
+                <!-- CARD 1 -->
+                <div class="col-md-3">
+                    <div class="industry-card mb-3">
+                        
+                        <h4>Mouse Bite</h4>
+                        <p class="industry-desc">
+                            Detects jagged, punched-like patterns.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="col-md-3">
+                    <div class="industry-card mb-3">
+                        
+                        <h4>Spur</h4>
+                        <p class="industry-desc">Predicts spiky/branch-like shorts.</p>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="col-md-3">
+                    <div class="industry-card mb-3">
+                        
+                        <h4>Missing Hole</h4>
+                        <p class="industry-desc">Spots missing or incomplete drilling.</p>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="col-md-3">
+                    <div class="industry-card mb-3">
+                        
+                        <h4>Short</h4>
+                        <p class="industry-desc">Finds unintended bridging paths.</p>
+                    </div>
+                </div>
+                <!-- CARD 5 -->
+                <div class="col-md-3 offset-md-3">
+                    <div class="industry-card mb-3">
+                        
+                        <h4>Open Circuit</h4>
+                        <p class="industry-desc">
+                            Detects interruptions and incomplete paths.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CARD 6 -->
+                <div class="col-md-3">
+                    <div class="industry-card mb-3">
+                        
+                        <h4>Spurious Copper</h4>
+                        <p class="industry-desc">
+                            Finds random, unwanted copper patches.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industry section -->
+        <section class="industries-section container py-5">
+            <!-- SECTION HEADING -->
+            <h2 class="text-center fw-bold section-title heading-1" data-aos="zoom-out-down">
+                Where Circuit Sherlock Makes an Impact
+            </h2>
+
+            <div class="row g-4 mt-2" data-aos="zoom-out-right">
+                <!-- CARD 1 -->
+                <div class="col-md-3">
+                    <div class="industry-card"
+                        data-hover-text="PCBs power devices like smartphones, laptops, and appliances.">
+                        <div class="icon-box">
+                            <img src="{{ url_for('static', filename='./assets/pcb.png')}}" alt="" />
+                        </div>
+                        <h4>Manufacturing Industry</h4>
+                        <p class="industry-desc">
+                            PCBs power everyday devices like smartphones, laptops, cameras,
+                            and home appliances.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="col-md-3">
+                    <div class="industry-card">
+                        <div class="icon-box">
+                            <img src="{{ url_for('static', filename='./assets/electric-vehicle.png')}}" alt="" />
+                        </div>
+                        <h4>Automotive Industry</h4>
+                        <p class="industry-desc">
+                            PCBs drive critical vehicle systems such as engine control,
+                            safety sensors, infotainment units, and electric vehicle
+                            modules.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="col-md-3">
+                    <div class="industry-card">
+                        <div class="icon-box">
+                            <img src="{{ url_for('static', filename='./assets/plane.png')}}" alt="" />
+                        </div>
+                        <h4>Aerospace</h4>
+                        <p class="industry-desc">
+                            PCBs support high-precision avionics, navigation systems,
+                            communication modules, and spacecraft control technologies.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="col-md-3">
+                    <div class="industry-card">
+                        <div class="icon-box">
+                            <img src="{{ url_for('static', filename='./assets/telecommunication.png')}}" alt="" />
+                        </div>
+                        <h4>Telecommunication</h4>
+                        <p class="industry-desc">
+                            PCBs enable the operation of network towers, routers,
+                            satellites, and high-speed communication systems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- our team members stylings -->
+        <section class="team-info mb-5">
+            <div class="container" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                <h2 class="text-center mb-5 fw-bold heading-1">Our Team</h2>
+
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <!-- Slide 1 -->
+                        <div class="carousel-item active">
+                            <div class="card shadow p-4">
+                                <h4 class="fw-bold mb-4 text-center">Full-Stack Team</h4>
+
+                                <div class="row text-center g-4">
+                                    <!-- Member 1 -->
+                                    <div class="col-12 col-md-4">
+                                        <img src="{{ url_for('static', filename='./Assets/surya_photo.jpeg')}}"
+                                            class="member-img rounded-circle" alt="" />
+                                        <h5 class="mt-3 fw-bold text-white">Surya</h5>
+                                        <p class="text-white">Full Stack Developer</p>
+                                    </div>
+
+                                    <!-- Member 2 -->
+                                    <div class="col-12 col-md-4">
+                                        <img src="{{ url_for('static', filename='./Assets/saiesh.jpg')}}"
+                                            class="member-img rounded-circle" alt="" />
+                                        <h5 class="mt-3 fw-bold text-white">Saiesh</h5>
+                                        <p class="text-white">Full Stack Developer</p>
+                                    </div>
+
+                                    <!-- Member 3 -->
+                                    <div class="col-12 col-md-4">
+                                        <img src="{{ url_for('static', filename='./Assets/maneesha.jpeg')}}"
+                                            class="member-img rounded-circle" alt="" />
+                                        <h5 class="mt-3 fw-bold text-white">Maneesha</h5>
+                                        <p class="text-white">Full Stack Developer</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="carousel-item">
+                            <div class="card shadow p-4">
+                                <h4 class="fw-bold mb-4 text-center">Data Science Team</h4>
+
+                                <div class="row text-center g-4">
+                                    <!-- Member 4 -->
+                                    <div class="col-12 col-md-4">
+                                        <img src="{{ url_for('static', filename='./Assets/bharath.jpg')}}"
+                                            class="member-img rounded-circle" alt="" />
+                                        <h5 class="mt-3 fw-bold text-white">Bharath</h5>
+                                        <p class="text-white">Data Scientist</p>
+                                    </div>
+
+                                    <!-- Member 5 -->
+                                    <div class="col-12 col-md-4">
+                                        <img src="{{ url_for('static', filename='./Assets/team5.jpg')}}"
+                                            class="member-img rounded-circle" alt="" />
+                                        <h5 class="mt-3 fw-bold text-white">Ravi</h5>
+                                        <p class="text-white">Data Scientist</p>
+                                    </div>
+
+                                    <!-- Member 6 -->
+                                    <div class="col-12 col-md-4">
+                                        <img src="{{ url_for('static', filename='./Assets/varsha.jpeg')}}"
+                                            class="member-img rounded-circle" alt="" />
+                                        <h5 class="mt-3 fw-bold text-white">Varsha</h5>
+                                        <p class="text-white">Data Scientist</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer section start -->
+        <footer class="footer glass-footer" data-aos="fade-up">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <!-- column 1 -->
+                    <div class="col-sm-12 col-md-3 col-lg-3 glass-card">
+                        <div class="mx-4">
+                            <h5 class="glass-heading">Circuit Sherlock</h5>
+                            <p class="mt-4 text-wite glass-text">
+                                AI-Powered Image-Based PCB Defect Detection System
+                                <br />
+                                Combining Deep Learning and Computer Vision for Smarter
+                                Manufacturing.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- column 2 -->
+                    <div class="col-sm-12 col-md-3 col-lg-3 glass-card">
+                        <div class="mx-5">
+                            <h5 class="glass-heading">Quick Links</h5>
+                            <ul class="list-unstyled mt-4">
+                                <li class="text-capitalize mb-2">
+                                    <a href="/Home" class="text-decoration-none text-white">Home</a>
+                                </li>
+                                <li class="text-capitalize mb-2">
+                                    <a href="/About" class="text-decoration-none text-white">About Us</a>
+                                </li>
+                                <li class="text-capitalize mb-2">
+                                    <a href="/" class="text-decoration-none text-white">Our AI</a>
+                                </li>
+                                <li class="text-capitalize mb-2">
+                                    <a href="/Contact" class="text-decoration-none text-white">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- column 3 -->
+                    <div class="col-sm-12 col-md-3 col-lg-3 glass-card">
+                        <h5 class="glass-heading">Get in Touch</h5>
+                        <div class="d-flex mt-4 glass-text">
+                            <div class="me-2"><i class="bi bi-geo-alt fs-4"></i></div>
+                            <div class="text-wite">
+                                <p>kukkatpally,road no 4 <br />Hyderabad,50087</p>
+                            </div>
+                        </div>
+                        <div class="d-flex glass-text">
+                            <div class="me-2"><i class="bi bi-telephone fs-4"></i></div>
+                            <div class="text-wite">
+                                <p>+91 9958441478</p>
+                            </div>
+                        </div>
+                        <div class="d-flex glass-text">
+                            <div class="me-2"><i class="bi bi-envelope fs-4"></i></div>
+                            <div class="text-wite">
+                                <p>CircuitSherlock@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="text-center glass-text">
+                <p>© 2025 Circuit Sherlock</p>
+            </div>
+        </footer>
+        <!-- Footer section End -->
+    </section>
+
+    <!-- scripts -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Bootstrap js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <!-- Aos animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
