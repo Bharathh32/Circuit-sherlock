@@ -1,0 +1,12 @@
+services:
+  - name: pcb-detection
+    type: web
+    runtime: python
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.4"
+    buildCommand: |
+      apt-get update && \
+      apt-get install -y libgl1 libglib2.0-0 libsm6 libxrender1 libxext6 && \
+      pip install -r requirements.txt
+    startCommand: gunicorn app:app
