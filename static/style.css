@@ -34,7 +34,7 @@
 }
 
 .nav-link:hover   {
-color: #04D9FF;
+color: white;
 }
 
 .navbar-brand{
@@ -44,22 +44,6 @@ color: #04D9FF;
 
 .navbar-brand:hover{
     color: white;
-}
-
-.nav-about:hover{
-   color: #ef7128;
-}
-
-.nav-index:hover{
-    color: gold;
-}
-
-.nav-contact:hover{
-    color: green;
-}
-
-.nav-result:hover{
-color: rgba(197, 39, 197, 0.858);
 }
 
 /* Footer Section */
@@ -1036,7 +1020,7 @@ body {
 
 /* Result Page Stylings */
 .result-background{
-    background: url('./Assets/result_background.png') no-repeat center center/cover;
+    background: url('./Assets/ultra.jpg') no-repeat center center/cover;
 }
 
 .result-background::before {
