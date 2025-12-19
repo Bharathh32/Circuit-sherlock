@@ -115,7 +115,7 @@ Circuit Sherlock demonstrates how AI can transform PCB quality control through r
 
 ## 👤 Author
 **Bharath Kumar**  
-B.Tech Final Year | Machine Learning & Full Stack Enthusiast  
+B.Tech Final Year | Data Science Enthusiast  
 
 ---
 
