@@ -65,7 +65,7 @@ To design and deploy an AI-powered PCB defect detection system that:
 ---
 
 ## ⚙️ Model Training Details
-- **YOLO Version:** YOLOv8  
+- **YOLO Version:** YOLO11n  
 - **Training Images:** 6,370  
 - **Validation Images:** 802  
 - **Input Size:** 640 × 640  
