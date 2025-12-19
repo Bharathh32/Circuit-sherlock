@@ -119,6 +119,18 @@ B.Tech Final Year | Machine Learning & Full Stack Enthusiast
 
 ---
 
+## 👥 Team & Contributors
+### 📊 Data Science
+- Bharath Kumar Barre  
+- Ravi Kumar Penumajji  
+- Varsha Bandari  
+### 🌐 Full Stack Development
+- Satya Saiesh Munjuluri  
+- Sai Surya Chekuri  
+- Maneesha Pulakanti  
+
+---
+
 ## ⭐ Acknowledgements
 - Ultralytics YOLO
 - OpenCV Community
