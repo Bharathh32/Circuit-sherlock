@@ -114,10 +114,31 @@ document.addEventListener("DOMContentLoaded", function () {
     // detect defects button (submit)
     const detectBtn = document.querySelector(".detect-btn");
 
-    detectBtn.addEventListener("click", function () {
-        // DO NOT prevent submit
-        accordionSection.style.display = "block";
-    });
+detectBtn.addEventListener("click", async function (event) {
+
+    const user = firebase.auth().currentUser;
+
+    if (!user) {
+        alert("Please login to use Our AI");
+        event.preventDefault();
+        return;
+    }
+
+    const allowed = await checkAILimit(user.uid);
+
+    if (!allowed) {
+        // stop form submit + AI call
+        event.preventDefault();
+        return;
+    }
+
+    // ✅ allowed → continue existing flow
+    accordionSection.style.display = "block";
+
+    // increment only AFTER allowing
+    incrementAIUse(user.uid);
+});
+
 
 });
 

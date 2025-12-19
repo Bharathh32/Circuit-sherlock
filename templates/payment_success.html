@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment Success</title>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+<script>
+console.log("🔥 Firebase scripts loaded");
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDKW_hw5R3u-dOZDlLFe01pkG0nd85M7x4",
+    authDomain: "circuit-sherlock.firebaseapp.com",
+    projectId: "circuit-sherlock",
+    storageBucket: "circuit-sherlock.firebasestorage.app",
+    messagingSenderId: "557316331202",
+    appId: "1:557316331202:web:9541d05d9d1d97b1c90d5b",
+    measurementId: "G-F5Y1EGXGED"
+  };
+
+firebase.initializeApp(firebaseConfig);
+console.log("🔥 Firebase initialized");
+</script>
+
+</head>
+<body>
+
+<h1>Payment Successful 🎉</h1>
+<p>Activating subscription…</p>
+
+<script>
+firebase.auth().onAuthStateChanged(async (user) => {
+  console.log("AUTH USER:", user);
+
+  if (!user) {
+    alert("User not logged in");
+    return;
+  }
+
+  await firebase.firestore()
+    .collection("users")
+    .doc(user.uid)
+    .set({
+      is_subscribed: true,
+      plan: "premium"
+    }, { merge: true });
+
+  alert("Subscription activated");
+  window.location.href = "/live";
+});
+</script>
+
+</body>
+</html>

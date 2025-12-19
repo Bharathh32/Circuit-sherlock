@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Sign Up | Circuit Sherlock</title>
+
+    <!-- Login/Signup CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='login_signup.css') }}">
+
+    <!-- Firebase SDKs (Compat – REQUIRED for your JS) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Config -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDKW_hw5R3u-dOZDlLFe01pkG0nd85M7x4",
+            authDomain: "circuit-sherlock.firebaseapp.com",
+            projectId: "circuit-sherlock",
+            storageBucket: "circuit-sherlock.appspot.com",
+            messagingSenderId: "YOUR_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase ONLY ONCE
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+    </script>
+
+    <style>
+        /* Align labels to the left */
+        form label {
+            display: block;
+            text-align: left !important;
+            width: 100%;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <div class="container" id="container">
+
+            <!-- ================= SIGN UP PANEL ================= -->
+            <div class="form-container sign-up-container">
+                <form id="signupForm">
+                    <h1>Create Account</h1>
+
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Name" required />
+
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Email" required />
+
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Password" required />
+
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+
+            <!-- ================= SIGN IN PANEL ================= -->
+            <div class="form-container sign-in-container">
+                <form id="loginForm">
+                    <h1>Sign In</h1>
+
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Email" required />
+
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Password" required />
+
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
+
+            <!-- ================= OVERLAY SWITCH ================= -->
+            <div class="overlay-container">
+                <div class="overlay">
+
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>Please login with your credentials</p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, Friend!</h1>
+                        <p>Create your account and start your journey with us</p>
+                        <button class="ghost" id="signUp">Sign Up</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= MAIN LOGIN/SIGNUP JS ================= -->
+    <script src="{{ url_for('static', filename='login_signup.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin - User List</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:#0b1220;
+    color:#fff;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+    width:260px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    background:linear-gradient(180deg,#0f2027,#203a43);
+    padding:30px 20px;
+    box-shadow:5px 0 20px rgba(0,0,0,.4);
+}
+
+.sidebar h4{
+    text-align:center;
+    margin-bottom:40px;
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+.sidebar a{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 18px;
+    margin-bottom:12px;
+    color:#cfd8dc;
+    text-decoration:none;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.sidebar a i{
+    font-size:1.1rem;
+    color:#00e5ff;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+    background:rgba(255,255,255,.15);
+    color:#fff;
+}
+
+/* ===== CONTENT ===== */
+.content{
+    margin-left:260px;
+    padding:50px;
+}
+
+/* ===== TITLE ===== */
+.page-title{
+    font-size:28px;
+    font-weight:600;
+    margin-bottom:30px;
+}
+
+/* ===== GLASS CARD ===== */
+.glass-box{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(14px);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+    overflow-x:auto;
+}
+
+/* REMOVE BOOTSTRAP WHITE */
+.table{
+    --bs-table-bg: transparent !important;
+}
+
+/* ===== DARK TABLE ===== */
+.dark-table{
+    width:100%;
+    color:#fff;
+}
+
+.dark-table thead tr{
+    background:rgba(0,229,255,.18);
+}
+
+.dark-table th,
+.dark-table td{
+    padding:12px;
+    text-align:center;
+    border:none;
+}
+
+.dark-table tbody tr{
+    background:rgba(255,255,255,.03);
+    transition:.3s;
+}
+
+.dark-table tbody tr:hover{
+    background:rgba(0,229,255,.08);
+}
+
+/* LINKS */
+.dark-table a{
+    color:#00e5ff;
+    text-decoration:none;
+}
+
+.dark-table a:hover{
+    text-decoration:underline;
+}
+
+/* ===== BUTTONS ===== */
+button{
+    font-weight:600;
+    border-radius:12px;
+    padding:6px 14px;
+    transition:.3s;
+}
+
+.btn-success{
+    background:linear-gradient(135deg,#00e5ff,#1de9b6);
+    border:none;
+    color:#000;
+}
+
+.btn-warning{
+    background:linear-gradient(135deg,#ffc107,#ffca28);
+    border:none;
+    color:#000;
+}
+
+.btn-danger{
+    background:linear-gradient(135deg,#ff1744,#ff4569);
+    border:none;
+    color:#fff;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 15px rgba(0,229,255,.4);
+}
+
+/* ENABLE / DISABLE */
+.active-btn{opacity:1;}
+.inactive-btn{opacity:0.4; pointer-events:none;}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h4>ADMIN PANEL</h4>
+
+    <a href="/admin/dashboard">
+        <i class="fa-solid fa-chart-line"></i> Dashboard
+    </a>
+
+    <a href="/admin/profile">
+        <i class="fa-solid fa-user-shield"></i> Profile
+    </a>
+
+    <a href="/admin/users" class="active">
+        <i class="fa-solid fa-users"></i> Users
+    </a>
+
+    <a href="/" style="margin-top:25px;">
+        <i class="fa-solid fa-globe"></i> Website
+    </a>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+    <div class="page-title">
+        <i class="fa-solid fa-users"></i> User Details
+    </div>
+
+    <div class="glass-box">
+        <table class="table table-borderless dark-table">
+            <thead>
+                <tr>
+                    <th>UID</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Admin</th>
+                    <th>Promote</th>
+                    <th>Demote</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in users %}
+                <tr>
+                    <td><a href="/admin/user/{{ u.uid }}">{{ u.uid }}</a></td>
+                    <td>{{ u.email }}</td>
+                    <td>{{ u.name }}</td>
+                    <td>{{ u.admin }}</td>
+
+                    <td>
+                        <form action="/admin/promote/{{ u.uid }}" method="POST">
+                            <button class="btn btn-success btn-sm {% if not u.admin %}active-btn{% else %}inactive-btn{% endif %}">
+                                Promote
+                            </button>
+                        </form>
+                    </td>
+
+                    <td>
+                        <form action="/admin/demote/{{ u.uid }}" method="POST">
+                            <button class="btn btn-warning btn-sm {% if u.admin %}active-btn{% else %}inactive-btn{% endif %}">
+                                Demote
+                            </button>
+                        </form>
+                    </td>
+
+                    <td>
+                        <form action="/admin/delete/{{ u.uid }}" method="POST">
+                            <button class="btn btn-danger btn-sm">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

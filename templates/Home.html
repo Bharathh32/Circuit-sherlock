@@ -4,55 +4,90 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Title -->
     <title>Circuit Sherlock</title>
-    <!-- Bootstrap Cdn link -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <!-- Bootstrap icon cdn -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <!-- External Css link -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <!-- Aos animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+    <script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDKW_hw5R3u-dOZDlLFe01pkG0nd85M7x4",
+    authDomain: "circuit-sherlock.firebaseapp.com",
+    projectId: "circuit-sherlock",
+    storageBucket: "circuit-sherlock.firebasestorage.app",
+    messagingSenderId: "557316331202",
+    appId: "1:557316331202:web:9541d05d9d1d97b1c90d5b",
+    measurementId: "G-F5Y1EGXGED"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
 </head>
 
 <body>
-    <section class="Home-background">
-        <!-- navbar start -->
-        <nav class="navbar navbar-scrolled navbar-expand-lg bg-body-tertiary sticky-top">
-            <div class="container-fluid">
-                <a class="navbar-brand fs-4" href="#"><span><img src="{{ url_for('static', filename='./Assets/Gemini_Generated_Image_tqmylmtqmylmtqmy_1_-removebg-preview.png')}}" alt="" width="55px" height="55px" class="mb-2"></span>Circuit <span class="title-1">Sherlock</span></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse mb-2" id="navbarNav">
-                    <ul class="navbar-nav mx-auto fs-5">
-                        <li class="nav-item me-3">
-                            <a class="nav-link fw-bold" aria-current="page" href="/Home">Home</a>
-                        </li>
-                        <li class="nav-item me-3">
-                            <a class="nav-link fw-bold" href="/About">About Us</a>
-                        </li>
-                        <li class="nav-item me-3">
-                            <a class="nav-link fw-bold" href="/">Our AI</a>
-                        </li>
-                        <li class="nav-item me-3">
-                            <a class="nav-link fw-bold" href="/Contact">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- navbar end -->
+<section class="Home-background">
 
-        <!-- banner start -->
+<!-- NAVBAR -->
+<nav class="navbar navbar-scrolled navbar-expand-lg bg-body-tertiary sticky-top">
+    <div class="container-fluid">
+
+        <a class="navbar-brand fs-4" href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='./Assets/Gemini_Generated_Image_tqmylmtqmylmtqmy_1_-removebg-preview.png')}}"
+                 width="55" height="55" class="mb-2">
+            Circuit <span class="title-1">Sherlock</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav mx-auto fs-5">
+                <li class="nav-item me-3">
+                    <a class="nav-link fw-bold" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link fw-bold" href="{{ url_for('about') }}">About Us</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link fw-bold" href="{{ url_for('ai_index') }}">Our AI</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link fw-bold" href="/payment">
+                        Premium
+                    </a>
+                </li>
+
+                <li class="nav-item me-3">
+                    <a class="nav-link fw-bold" href="{{ url_for('contact') }}">Contact</a>
+                </li>
+            </ul>
+
+            <!-- RIGHT SIDE BUTTONS (aligned using ms-auto) -->
+           <!-- NAV AUTH AREA (replace the old d-flex block with this) -->
+            <div id="navAuth" class="d-flex align-items-center gap-2">
+            <i id="navProfileIcon"></i>
+            <span id="navHello" class="fw-semibold text-white d-none"></span>
+            <div id="navControls"></div>
+        </div>
+
+        </div>
+    </div>
+</nav>
+<!-- NAVBAR END -->
+
+<!-- banner start -->
         <section class="banner ">`
             <div class="banner-content">
                 <h1 class="title" data-aos="zoom-in">Smarter Circuits, Smarter Inspection</h1>
                 <p data-aos="zoom-in" data-aos-delay="300" >AI that sees what humans miss ensuring zero-defect PCB production.</p>
-                <a class="btn btn-outline w-25 p-2 fw-bold mt-3 btn-glow" href="/" data-aos="zoom-in" data-aos-delay="300">Try Our Ai</a>
             </div>
         </section>
         <!-- banner end -->
@@ -439,6 +474,9 @@
     <script>
         AOS.init();
     </script>
+
+<script src="{{ url_for('static', filename='nav_auth.js') }}"></script>
+
 </body>
 
 </html>

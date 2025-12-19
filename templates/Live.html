@@ -57,6 +57,27 @@
             margin-bottom: 20px;
         }
     </style>
+
+        <!-- Firebase App (Compat SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <!-- Firebase Auth (Compat SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+    <!-- Your Firebase Config -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDKW_hw5R3u-dOZDlLFe01pkG0nd85M7x4",
+            authDomain: "circuit-sherlock.firebaseapp.com",
+            projectId: "circuit-sherlock",
+            storageBucket: "circuit-sherlock.firebasestorage.app",
+            messagingSenderId: "557316331202",
+            appId: "1:557316331202:web:9541d05d9d1d97b1c90d5b",
+            measurementId: "G-F5Y1EGXGED"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 </head>
 <body>
 
@@ -142,6 +163,8 @@ function addDefectToTable(defectText) {
     cell2.innerHTML = defectText;
 }
 </script>
+
+<script src="{{ url_for('static', filename='nav_auth.js') }}"></script>
 
 </body>
 </html>

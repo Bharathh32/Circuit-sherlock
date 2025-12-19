@@ -15,6 +15,25 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <!-- Aos animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDKW_hw5R3u-dOZDlLFe01pkG0nd85M7x4",
+    authDomain: "circuit-sherlock.firebaseapp.com",
+    projectId: "circuit-sherlock",
+    storageBucket: "circuit-sherlock.firebasestorage.app",
+    messagingSenderId: "557316331202",
+    appId: "1:557316331202:web:9541d05d9d1d97b1c90d5b",
+    measurementId: "G-F5Y1EGXGED"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+
 </head>
 
 <body>
@@ -29,35 +48,70 @@
 
     <section class="index-background">
 
-        <!-- navbar start -->
-        <nav class="navbar navbar-scrolled navbar-expand-lg bg-body-tertiary sticky-top">
-            <div class="container-fluid">
-                <a class="navbar-brand fs-4" href="#"><span><img
-                            src="{{ url_for('static', filename='assets/ailogo.png')}}" alt="" width="55px" height="55px"
-                            class="mb-2" /></span>Circuit <span style="color: gold;">Sherlock</span> </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse mb-2" id="navbarNav">
-                    <ul class="navbar-nav mx-auto fs-5">
-                        <li class="nav-item me-3">
-                            <a class="nav-link nav-index fw-bold" aria-current="page" href="/Home">Home</a>
-                        </li>
-                        <li class="nav-item me-3">
-                            <a class="nav-link nav-index fw-bold" href="/About">About Us</a>
-                        </li>
-                        <li class="nav-item me-3">
-                            <a class="nav-link nav-index fw-bold" href="/">Our AI</a>
-                        </li>
-                        <li class="nav-item me-3">
-                            <a class="nav-link nav-index fw-bold" href="/Contact">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- navbar end -->
+<!-- navbar start -->
+<nav class="navbar navbar-scrolled navbar-expand-lg bg-body-tertiary sticky-top">
+    <div class="container-fluid">
+
+        <!-- Brand -->
+        <a class="nav-link navbar-brand fs-4 fw-bold" href="#">
+            <span>
+                <img src="{{ url_for('static', filename='./Assets/ailogo.png')}}"
+                     alt=""
+                     width="55px"
+                     height="55px"
+                     class="mb-2">
+            </span>
+            Circuit <span style="color:gold">Sherlock</span>
+        </a>
+
+        <!-- Mobile toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- COLLAPSE CONTENT -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <!-- Center menu -->
+            <ul class="navbar-nav mx-auto fs-5">
+                <li class="nav-item me-3">
+                    <a class="nav-index nav-link fw-bold" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-index nav-link fw-bold" href="{{ url_for('about') }}">About Us</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-index nav-link fw-bold" href="{{ url_for('ai_index') }}">Our AI</a>
+                </li>
+                <li class="nav-item me-3">
+                                <a class="nav-index nav-link fw-bold" href="/payment">
+                                    Premium
+                                </a>
+                </li>
+                <li class="nav-item me-3">
+                        <a class="nav-index nav-link fw-bold" href="{{ url_for('contact') }}">Contact</a>
+                    </li>
+            </ul>
+
+
+            <!-- RIGHT SIDE BUTTONS (aligned using ms-auto) -->
+           <!-- NAV AUTH AREA (replace the old d-flex block with this) -->
+            <div id="navAuth" class="d-flex align-items-center gap-2">
+            <i id="navProfileIcon"></i>
+            <span id="navHello" class="fw-semibold text-white d-none"></span>
+            <div id="navControls"></div>
+        </div>
+
+
+
+
+
+        </div>
+    </div>
+</nav>
+<!-- navbar end -->
 
         <!-- SUMMARY SECTION -->
         <div class="container mt-5 py-5" id="summarySection" data-aos="fade-up"
@@ -226,6 +280,34 @@
         </div>
 
 
+        <!-- FREE TRIAL LIMIT POPUP -->
+<div class="modal fade" id="limitModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger">Free Trials Completed</h5>
+      </div>
+      <div class="modal-body">
+        <p>You have used all <strong>5 free AI trials</strong>.</p>
+        <p>Please subscribe to continue using Our AI.</p>
+      </div>
+      <div class="modal-footer">
+        <a href="/payment" class="btn btn-primary">Buy Subscription</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showLimitPopup() {
+    const modal = new bootstrap.Modal(
+        document.getElementById("limitModal")
+    );
+    modal.show();
+}
+</script>
+
+
 
 
         <!-- Footer section start -->
@@ -316,6 +398,9 @@
     <script>
         AOS.init();
     </script>
+
+<script src="{{ url_for('static', filename='nav_auth.js') }}"></script>
+<script src="{{ url_for('static', filename='usage_limit.js') }}"></script>
 
 </body>
 
